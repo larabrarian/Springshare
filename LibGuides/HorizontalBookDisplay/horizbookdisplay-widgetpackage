@@ -1,0 +1,44 @@
+<style type="text/css">
+/*Forces book title below book cover image when books are displayed in multi-column grid
+Book title will appear next to book cover image when books are displayed as single column (i.e. on smaller devices)*/
+@media(min-width:768px) {
+  .s-lg-book-title {
+    display: inline-block;
+    padding-top: 5px;
+  }
+  .s-lg-book-cover img {
+    height: 200px;
+    width: auto !important;
+  }
+}
+</style>
+
+<!--Display the widget title in admin mode (hidden on public-facing page)
+Used to identify box ID for script-->
+<p class="js-widget-title" id="horiz-book-display" style="display:none;">WIDGET TITLE (Hidden on published guide) - JS: Display Book List Horizontally (2-4 Books)</p>
+
+<script type="text/javascript">
+//Uses jQuery
+$(document).ready(function() {
+  //Show widget title in admin view
+  var $cmdDiv = $('#s-lg-admin-command-bar');
+  if ($cmdDiv.length) {
+    $('.js-widget-title').css('display', 'block');
+  };
+  //Get ID for box containing script/books
+  var boxID = $('#horiz-book-display').parents().eq(3).attr("id");
+  //If box contains 4 books, divide into 4 equal columns
+  if ($('#' + boxID + ' .s-lg-book').length === 4) {
+    $('#' + boxID + ' .s-lg-book').parents('ul').addClass("row");
+    $('#' + boxID + ' .s-lg-book').parents('li').addClass("col-sm-3");
+  //If box contains 3 books, divide into 3 equal columns
+  } else if ($('#' + boxID + ' .s-lg-book').length === 3) {
+    $('#' + boxID + ' .s-lg-book').parents('ul').addClass("row");
+    $('#' + boxID + ' .s-lg-book').parents('li').addClass("col-sm-4");
+  //If box contains 2 books, divide into 2 equal columns
+  } else if ($('#' + boxID + ' .s-lg-book').length === 2) {
+    $('#' + boxID + ' .s-lg-book').parents('ul').addClass("row");
+    $('#' + boxID + ' .s-lg-book').parents('li').addClass("col-sm-6");
+  }
+});
+</script>
