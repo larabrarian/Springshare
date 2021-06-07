@@ -1,0 +1,12 @@
+/*Forces book title below book cover image when books are displayed in multi-column grid
+Book title will appear next to book cover image when books are displayed as single column (i.e. on smaller devices)*/
+@media(min-width:768px) {
+  .s-lg-book-title {
+    display: inline-block;
+    padding-top: 5px;
+  }
+  .s-lg-book-cover img {
+    height: 200px;
+    width: auto !important;
+  }
+}
